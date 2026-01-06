@@ -1,0 +1,38 @@
+#构建镜像
+sudo docker build -t td_cicd_token_service .
+
+
+kubectl apply -f TokenService-deployment.yaml --namespace beta-token-service
+kubectl apply -f TokenService-service.yaml --namespace beta-token-service
+
+#构建失败：无法拉去pause镜像（pause是pod最基础的镜像）
+Failed to create pod sandbox: rpc error: code = Unknown desc = failed pulling image "rancher/mirrored-pause:3.6"
+
+#措施：配置国内镜像
+sudo vi /etc/rancher/k3s/registries.yaml
+mirrors:
+  docker.io:
+    endpoint:
+      - "https://docker.mirrors.ustc.edu.cn"
+      - "https://hub-mirror.c.163.com"
+  rancher.io:
+    endpoint:
+      - "https://docker.mirrors.ustc.edu.cn"
+  registry.k8s.io:
+    endpoint:
+      - "https://registry.aliyuncs.com/google_containers"
+
+
+
+备注(非必须)：
+将docker设置为容器运行时
+/etc/rancher/k3s/k3s.yaml
+	docker: true
+
+从节点加入集群
+k3s agent --docker --server https://10.148.137.143:6443 --token <token>
+
+
+
+
+
