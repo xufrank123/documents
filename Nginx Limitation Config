@@ -1,0 +1,67 @@
+main configuration： /etc/nginx/nginx.conf
+or /etc/nginx/sites-available/
+
+
+1. Rate Limiting (Requests per second/minute) 
+	1.1 Define a shared memory zone (in http block)
+		http {
+			# # Define a zone named 'mylimit' (10MB size) that limits requests per IP to 2 r/s
+    			limit_req_zone $binary_remote_addr zone=mylimit:10m rate=2r/s;
+    			# ... other http settings
+		}
+		最多存储16w个ip，每个ip每秒最多访问两次
+	1.2 Apply the limit (in server or location block):
+		server {
+    		# ...
+    			location /api/magicapi/overview {
+        			limit_req zone=[...] burst=5 nodelay;
+        			# ...
+   			 }
+		}
+	This applies the mylimit rules to the /login/ location. The burst=5 parameter allows a small queue of 5 extra requests before rejecting them, and nodelay ensures requests are processed immediately as long as a slot is available in the burst queue. 
+
+$binary_remote_addr: Uses the client's IP address as the key for the limit.
+zone=mylimit:10m: Names the zone mylimit and allocates 10 megabytes of shared memory for state storage.
+rate=2r/s: Sets the rate limit to 2 requests per second.
+
+
+
+
+2. Connection Limiting (Concurrent connections)
+	2.1 Define a shared memory zone (in http block):
+		http {
+    			limit_conn_zone $binary_remote_addr zone=addr:10m;
+    			# ... other http settings
+		}
+	2.2 Apply the limit (in server or location block):
+		server {
+   			 # ...
+			 location /download/ {
+        		 	limit_conn addr 1;
+        			# ... other location settings
+    			}
+		}
+	This limits clients to a single connection in the /download/ location. 
+
+
+
+
+
+
+3. Bandwidth Limiting 数据传输率限流
+	3.1 Apply the limit (in http, server, or location block):
+		location /my_resource {
+    			proxy_pass http://my_backend;
+    			limit_rate 10k;
+		}
+	This limits the transfer rate to 10 kilobytes per second for the /my_resource location. 
+
+
+4. File Upload Size Limiting 文件上传大小限制
+This prevents large file uploads which can overwhelm a server. 
+	4.1 Set the maximum body size (in http, server, or location block):
+		http {
+   		 	# ...
+    			client_max_body_size 100M;
+		}
+	Requests exceeding 100MB will receive a 413 "Request Entity Too Large" error. 
