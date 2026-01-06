@@ -1,0 +1,42 @@
+#基于EulerOS
+#离线按端庄
+#下载并解压
+tar -xzf jdk-17.0.12_linux-x64_bin.tar.gz
+sudo mv jdk-17.0.12 /usr/lib/jvm/jdk-17
+
+#配置环境变量
+sudo vi /etc/profile
+    export JAVA_HOME=/usr/lib/jvm/jdk-17/jdk-17.0.12
+    export PATH=$PATH:$JAVA_HOME/bin
+
+#是配置生效
+source /etc/profile
+
+#验证
+java -version
+
+#后台运行jar包并输出日志到指定目录 
+#nohup表示在终端运行后继续后台运行程序 
+#结尾带上符号'&'表示执行命令后后台运行程序
+#eins 
+nohup java -jar t_cicd-0.0.1-SNAPSHOT.jar > ./logs/t_cicd-0.0.1-SNAPSHOT.log 2>./logs/error.log &
+#或 zwei将错误日志一并输出到正常log中
+nohup java -jar t_cicd-0.0.1-SNAPSHOT.jar &> ./logs/t_cicd-0.0.1-SNAPSHOT.log & 
+#与zwei等价的写法
+nohup java -jar t_cicd-0.0.1-SNAPSHOT.jar > ./logs/t_cicd-0.0.1-SNAPSHOT.log  2>&1 & 
+
+
+
+#停止springboot应用
+ps -aux | grep java #先查看有哪些Java进程,复制springboot应用的pid
+kill [pid] #停掉springboot应用
+
+
+#防火墙
+systemctl status firewalld
+firewall-cmd --state
+firewall-cmd --list-all
+firewall-cmd --query-port=80/tcp #检查 80 端口 TCP 是否开放
+firewall-cmd --list-ports #只列出开放的端口。
+firewall-cmd --zone=public --add-port=[端口号/协议] --permanent #永久开放一个端口
+firewall-cmd --zone=public --add-port=8443/tcp #开放8443端口
