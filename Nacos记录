@@ -1,0 +1,42 @@
+阿里巴巴Nacos服务-配置管理
+
+•	nacos-server启动时需要的密钥和身份认证key与value
+secret	dGQtY2ljZC1uYWNvcy1zZXJ2ZXItMy0yMDI1LTEyLTI0LWNvbmZpZ3VyYXRpb24tbWFuYWdlbWVudA==
+identity.key	dGQtY2ljZC1uYWNvcy1zZXJ2ZXItMy1pZGVudGl0eS1rZXktMjAyNS0xMi0yNC1jb25maWd1cmF0aW9uLW1hbmFnZW1lbnQ=
+identity.value	dGQtY2ljZC1uYWNvcy1zZXJ2ZXItMy1pZGVudGl0eS12YWx1ZS0yMDI1LTEyLTI0LWNvbmZpZ3VyYXRpb24tbWFuYWdlbWVudA==
+
+
+•	问题： 配置发布后未生效
+1.	服务未注册到nacos？
+2.	nacos服务端连接失败？
+	nacos-server.3-1-1默认开启了认证，所以需要再配置文件中设置账号密码
+
+•	Note:
+1.	子模块寻找父亲工程pom的相对路径：用<relativePath>标签来指定，若没有指定，maven会按照此顺序寻找父工程的pom
+            当前目录的相对路径（ ../pom.xml）、本地仓库、远程仓库
+2.	要么用@NacosConfg注解，要么用@RefreshScope加上@Value注解验证配置刷新效果
+3.	lombok失效：确保完成这些事项——引入依赖 安装插件 将其加到classpath中或者不用lombok
+4.	nacos服务端连接失败：nacos-server.3-1-1默认开启了认证，所以需要再配置文件中设置账号密码
+5.	配置中端口号应该连8848而不是8080
+6.	确保nacos刷新配置生效：springboot版本如果在2.4+,开启refreshEnabled设置应该用spring.config.import=nacos:xxx.yaml?group=xxxx&refreshEnabled=true
+7.	查看依赖树：mvn dependency:tree
+
+
+
+8.	application.properties
+spring.cloud.nacos.config.server-addr=127.0.0.1:8848
+spring.application.name=example #mapping to part of "dataId" in nacos configuration
+9.	In Nacos Spring Cloud, the format of "dataId" is as follows:
+${prefix}-${spring.profiles.active}.${file-extension}
+${prefix}= spring.application.name
+
+
+
+•	Jasypt加密配置
+o	 
+o	如何设置${JASYPT_PASSWORD:default-secret}
+方式一：设置环境变量（推荐）	 
+	 
+Java启动参数	
+Dockerfile	
+
