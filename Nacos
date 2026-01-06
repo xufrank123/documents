@@ -1,0 +1,9 @@
+•	Run Nacos on Local based on windows
+1.	Windows: run command using startup.cmd -m standalone
+	It means run nacos without cluster mode, which is fit to local
+	Make sure u had already set “env variable” in JAVA_HOME, JAVA VERSION MUST BE 8 OR MORE LAST
+2.	Linux/Mac: run command using 
+	sh startup.sh -m standalone (If you encounter errors, try bash startup.sh -m standalone)
+
+1.	afterward, access the Console by using http://localhost:8848/nacos.
+
