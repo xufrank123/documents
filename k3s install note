@@ -1,0 +1,100 @@
+systemctl status firewalld
+
+systemctl stop firewalld
+systemctl disable firewalld
+vi /etc/selinux/config
+	set SELINUX=permissive not SELINUX=enforcing either not disabled
+
+#! 关闭swap区 turn off swap for k3s
+sudo swapoff -a 
+
+--ignored
+#! if u need to turn it on after turning it off:
+sudo swapon -a 
+--ignored
+
+#! 设置os内核参数 setting kernel variables for k3s
+cat <<EOF | sudo tee /etc/modules-load.d/k3s.conf
+overlay
+br_netfilter
+EOF
+
+###### if above network module is missing, use following command to load it
+sudo modprobe overlay
+sudo modprobe br_netfilter 
+
+#! network setting for k3s
+cat <<EOF | sudo tee /etc/sysctl.d/k3s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+sudo sysctl --system
+
+#手动下载 k3s 和 k3s images  
+https://github.com/k3s-io/k3s/releases/tag/v1.34.2+k3s1
+ k3s 
+ k3s-airgap-images-amd64.tar或k3s-airgap-images-amd64.tar.gz
+
+#手动下载 install.sh 脚本
+ https://github.com/k3s-io/k3s/blob/main/install.sh
+
+#copy k3s --> /usr/local/bin
+sudo cp k3s /usr/local/bin
+#添加执行权限
+sudo chmod 750 /usr/local/bin/k3s
+
+#创建目录 k3s全局配置
+sudo mkdir -p /etc/rancher/k3s
+
+#创建目录 k3s image
+sudo mkdir -p /var/lib/rancher/k3s/agent/images
+sudo cp k3s-airgap-images-amd64.tar.gz /var/lib/rancher/k3s/agent/images
+
+#将install.sh上传到服务器临时目录
+#master节点安装： 执行手动安装 以docker为容器运行时 禁用traefik servicelb cloud-controller
+sudo INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--cluster-init --write-kubeconfig-mode 644 --docker --disable traefik --disable servicelb --disable-cloud-controller" ./install.sh
+
+#获取token
+cat  /var/lib/rancher/k3s/server/node-token
+K10ee4c336a30eec4f56e5057f09ed8cfc719bf8cd6f1ffea248a11416787bd7ee4::server:6f92349baa73f2cb0f26aac21bf5bb55
+
+#工作节点安装：
+sudo INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--docker" K3S_URL=https://10.148.137.143:6443 K3S_TOKEN=K10ee4c336a30eec4f56e5057f09ed8cfc719bf8cd6f1ffea248a11416787bd7ee4::server:6f92349baa73f2cb0f26aac21bf5bb55  ./install.sh
+
+kubectl apply -f xxx.yaml
+
+
+#验证安装
+sudo kubectl get nodes
+sudo kubectl get pods --all-namespaces
+
+#设置主机名
+hostname 新主机名
+
+
+refert to
+https://3ms.huawei.com/km/groups/3942474/blogs/details/17821653
+
+
+
+ #如果监听的端口被某个容器占用，例如10010端口被占用，检查对应进程
+ sudo lsof -i :10010 #发现是docker某个容器应用
+ docker ps -a  #进一步检查
+ #aliyun的metersphere占用了该端口，将该容器应用停止
+ sudo docker stop [container id]
+
+
+
+故障排查
+https://chat.deepseek.com/share/iciq4nnpmk8esxe9v3
+
+
+
+
+#uninstall 
+sudo /usr/local/bin/k3s-killall.sh
+sudo /usr/local/bin/k3s-uninstall.sh
+sudo rm -rf /var/lib/rancher/k3s
+sudo rm -rf /etc/rancher/k3s
+
