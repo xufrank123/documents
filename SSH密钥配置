@@ -1,0 +1,46 @@
+SSH密钥配置
+•	ssh-keygen -t ed25518 -C xufanyun@h-partners.com
+•	 
+
+个人身份认证信息本地的保存目录	/c/Users/xwx1479213/.ssh/id_ed25519
+SSH公钥本地的保存目录	/c/Users/xwx1479213/.ssh/id_ed25519.pub
+key fingerprint 	SHA256:qSabK/yTA7PNJNi0M7sntXQ0Xh70J4bFeiv5mkSjoJc xufanyun@h-partners.com
+
+
+git clone [sshurl]
+git remote add upstream [sshurl] 
+git remote -v 
+
+
+
+
+git config --list 
+git config --list --show-origin
+git config --global user.name [username]
+git config --global user.email [email]
+
+
+git lfs（Large File Storage）: upload large file
+example:
+	git lfs install
+	git config --global http.sslVerify false
+1、每次使用时track大文件，会自动生成.gitattributes
+        git lfs track <large-file>
+2、添加.gitattributes
+        git add .gitattributes
+3、添加大文件
+        git add <large-file>
+4、提交
+        git commit -m "push large file"
+5、推送到master-xxx分支后，在codehub上创建合并请求
+          git push origin master:master-xxx
+
+"origin" is a alias for the remote repository,
+it serve as a bookmark for the repository`s URL, making it easier to reference to the remote repository.
+
+git rebase
+move or combine a sequence of commits to a new base commit, resulting in a clean, liner Project history.
+particularly useful for cleaning up your local commit history before sharing it.
+
+
+git clone -c -http.sslVerify=false [url]
