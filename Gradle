@@ -1,0 +1,40 @@
+
+•	Gradle
+1.	 
+•	Core Concepts
+Concepts	What it means
+Build	指项目构建的过程与环境，一次构建包含一个或者多个项目以及其构建脚本
+Project	需要构建的项目或者库
+Task	基本的构建工作单元，例如编译compiling或者运行测试running tests. Task在构建脚本中声名或者在插件中添加
+Build Script	构建脚本，即build.gradle(.kts)，用于定义task，dependency以及其他构建Project的指令……
+Plugin	插件用于扩展Gradle的功能，比如tasks和规范conventions
+Dependency	内部外部的资源，被Project所依赖
+	
+
+
+
+
+•	Gradle structure
+ 
+
+•	Gradle Wrapper
+1.	 
+2.	The Gradle Wrapper is the script called gradlew(macOS) or gradlew.bat(windows)
+3.	We use Gradle Wrapper by calling ./gradlew build(macOS) instead of using gradle build
+The Wrapper invokes a declared version of Gradle, downloading it beforehand if necessary.
+ 
+
+
+•	Use Gradle Wrapper to build Gradle Project
+o	If based on Windows
+	Run gradlew.bat build
+o	If based on MacOS
+	Run ./gradlew build
+
+
+
+
+
+
+
+•	Wrapper File 
