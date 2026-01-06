@@ -1,0 +1,71 @@
+目录
+•	Introduction
+•	Overview
+•	The Evolving Of Application Release
+•	Components
+•	Download
+
+
+•	Introduction
+  Kubernetes is an open source container orchestration engine for automating deployment, scaling, and management of containerized applications.
+  The open source project is hosted by the Cloud Native Computing Foundation（CNCF）. 
+
+•	Overview
+  Open source containerized orchestration engine for managing cluster（workload,service,etc）.
+  For example, if a container goes down, another container needs to start. Wouldn't it be easier if this behavior was handled by a system?
+
+Service discovery	
+Load balancing	
+Storage orchestration	
+Automated rollouts and rollbacks	
+Automatic bin packing	
+Self-healing	
+Secret and configuration management	
+Batch execution	
+Horizontal scaling	
+IPv4/IPv6 dual-stack	
+Designed for extensibility	
+
+•	The evolving of Application Release 部署应用的演进 
+
+ 
+Traditional Release		
+Virtualization Release		
+Containerization deploy		
+
+•	Components
+ 
+Component	Description	Type	Optional/Required
+kube-apiserver
+	Controller Plane Component	
+etcd
+	Controller Plane Component	
+kube-scheduler
+	Controller Plane Component	
+kube-controller-manager
+	Controller Plane Component	
+cloud-controller-manager		Controller Plane Component	optional
+kubelet
+	Node Component	
+kube-proxy
+	Node Component	optional
+container runtime
+	Node Component	
+Refer to https://kubernetes.io/docs/concepts/architecture/#kube-apiserver
+
+
+•	Download
+安装方式	说明
+Binaries + Container Images	
+All Binaries	
+
+组件	形式	版本	说明
+kubeadm	Binary		
+kubelet	Binary		
+kubectl	Binary		
+apiserver	Binary or Container Image		
+kube-scheduler	Binary or Container Image		
+kube-proxy	Binary or Container Image		
+etcd	Binary or Container Image		
+
+
