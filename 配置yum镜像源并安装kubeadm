@@ -1,0 +1,118 @@
+安装docker先
+配置yum源
+
+查看系统版本
+cat /etc/euleros*
+
+Euler官方镜像源地址
+https://euleros.huawei.com/repos/
+
+在/etc/yum.repos.d/目录下，创建文件EulerOS.repo（我们当前EulerOS版本为EulerOS_Server_V200R013C00SPC300B560_x86_64，所需配置如下）
+[base]
+name=EulerOS-2.0SP13 base
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/os/$basearch/
+enabled=1
+gpgcheck=0
+
+[updates]
+name=EulerOS-2.0SP13 updates
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/updates/
+enabled=1
+gpgcheck=0
+
+[devel_tools]
+name=EulerOS-2.0SP13 devel_tools
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/devel_tools/$basearch/
+enabled=1
+gpgcheck=0
+
+更新yum安装包列表
+yum update -y
+ 
+yum install docker-engine.x86_64 -y
+
+配置镜像源 
+vi /etc/docker/daemon.json
+    {
+        "registry-mirrors": ["https://xxx.com"]
+    }
+
+refer to https://3ms.huawei.com/km/groups/3942474/blogs/details/21807194
+
+
+
+离线安装 
+https://www.downloadkubernetes.com/
+kubeadm kubelet kubelet
+
+准备所有必需组件
+- kubeadm、kubelet、kubectl 二进制文件
+- 容器运行时（containerd/docker）
+- 所需容器镜像（kube-apiserver、kube-scheduler、kube-proxy、kube-controller-manager、coredns、pause、etcd）
+- CNI 插件
+
+
+# 1. 将下载的 kubeadm 复制到目标目录
+mv kubeadm /usr/local/bin/
+chmod +x kubeadm
+
+# 1. 将下载的 kubeadm、kubelet、kubelet 复制到目标目录
+mv kubeadm /usr/local/bin/
+chmod +x kubeadm
+...
+
+列出所需镜像
+kubeadm config images list
+
+
+
+下载所有核心镜像
+下载 Calico 镜像
+下载 CNI 插件二进制文件
+	插件列表
+	bridge：创建网桥
+
+	host-local：IP 地址管理
+
+	loopback：回环接口
+
+	portmap：端口映射
+
+	firewall：防火墙规则（可选）
+
+	tuning：接口调优（可选）
+
+
+
+
+
+
+Master 节点初始化
+kubeadm init \
+  --apiserver-advertise-address=192.168.1.100 \
+  --image-repository registry.aliyuncs.com/google_containers \
+  --kubernetes-version v1.29.0\
+  --service-cidr=10.96.0.0/12 \
+  --pod-network-cidr=10.244.0.0/16
+
+
+
+
+问题1：镜像下载，无法连接到镜像源 
+**初步排查
+关闭防火墙
+禁用selinux
+检查docker 镜像源设置
+	进一步排查——配置docker的daemon.json
+	安装x509 ssl证书
+		参考https://12345.huawei.com/unidesk/portal/#/case_details?caseId=KT00147848
+	docker login wirepo.td-tech.com
+		-u admin
+		-p eLTE@com
+	或者 docker login cmc.centralrepo.rnd.huawei.com/td_cloudnative
+		-u TD_CloudNative
+		-p eLTE@com123456
+
+
+
+
