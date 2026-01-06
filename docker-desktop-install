@@ -1,0 +1,22 @@
+安装docker-desktop的运行环境：WSL
+
+以管理员身份打开powershell，运行以下命令
+wsl --list --online
+按回车安装
+
+运行以下命令查看可用的distribution
+wsl.exe --list --online 
+
+运行以下命令安装Ubuntu
+wsl.exe –install Ubuntu
+
+点击"Docker Desktop Installer.exe"安装docker-desktop
+
+参考文档：
+https://learn.microsoft.com/en-us/windows/wsl/install
+https://docs.docker.com/desktop/setup/install/windows-install/
+
+
+卸载wsl以及已经下载的distribution
+
+wsl --unregister <DistributionName>
