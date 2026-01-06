@@ -1,0 +1,35 @@
+#! 关闭swap区 turn off swap for k3s
+sudo swapoff -a 
+
+--ignored
+#! if u need to turn it on after turning it off:
+sudo swapon -a 
+--ignored
+
+#! 设置os内核参数 setting kernel variables for k3s
+cat <<EOF | sudo tee /etc/modules-load.d/
+k3s.conf
+overlay
+br_netfilter
+EOF
+
+###### if above network module is missing, use following command to load it
+sudo modprobe overlay
+sudo modprobe br_netfilter 
+
+#! network setting for k3s
+cat <<EOF | sudo tee /etc/sysctl.d/
+k3s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+sudo sysctl --system
+
+#手动下载 k3s 和 k3s images  
+https://github.com/k3s-io/k3s/releases/tag/v1.34.2+k3s1
+ k3s 
+ k3s-airgap-images-amd64.tar
+
+#手动下载 install.sh 脚本
+ https://github.com/k3s-io/k3s/blob/main/install.sh
