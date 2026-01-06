@@ -1,0 +1,17 @@
+•	What is Prometheus 
+•	Basic Architecture of Prometheus
+•	
+
+
+What is Prometheus 
+Prometheus is a system monitoring and alerting system.
+Prometheus stores all metrics data as time series.
+
+
+Basic Architecture of Prometheus
+Prometheus Server
+
+ 
+
+
+
