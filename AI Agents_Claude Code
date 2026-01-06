@@ -1,0 +1,28 @@
+基于Claude Code
+Vibe coding
+ 	无干预
+ 	响应式
+
+日志打印
+
+
+
+
+以TODO为单位去vibe coding
+测试用例
+重构函数
+
+
+Readme文档的生成与维护
+
+
+新增功能开发
+
+
+
+提炼Prompt
+	尽可能避免Agent思维发散并以此来节省token
+
+
+
+上下文长度限制因模型而异
