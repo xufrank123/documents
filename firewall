@@ -1,0 +1,14 @@
+#防火墙
+systemctl status firewalld
+
+systemctl stop firewalld
+systemctl disable firewalld
+vi /etc/selinux/config
+	set SELINUX=permissive not SELINUX=enforcing either not disabled
+
+firewall-cmd --state
+firewall-cmd --list-all
+firewall-cmd --query-port=80/tcp #检查 80 端口 TCP 是否开放
+firewall-cmd --list-ports #只列出开放的端口。
+firewall-cmd --zone=public --add-port=[端口号/协议] --permanent #永久开放一个端口
+firewall-cmd --zone=public --add-port=8443/tcp #开放8443端口
