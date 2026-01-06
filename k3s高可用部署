@@ -1,0 +1,58 @@
+#copy k3s --> /usr/local/bin
+sudo cp k3s /usr/local/bin
+#添加执行权限
+sudo chmod 750 /usr/local/bin/k3s
+
+#创建目录 k3s全局配置
+sudo mkdir -p /etc/rancher/k3s
+
+#创建目录 k3s image
+sudo mkdir -p /var/lib/rancher/k3s/agent/images
+sudo cp k3s-airgap-images-amd64.tar.gz /var/lib/rancher/k3s/agent/images
+
+sudo INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--cluster-init --write-kubeconfig-mode 644 --docker --disable traefik --disable servicelb --disable-cloud-controller" ./install.sh
+
+#指定docker为容器运行时
+追加配置 /etc/rancher/k3s/k3s.yaml 
+	docker: true
+
+# 如果有问题 查看问题
+journalctl -xeu k3s.service
+
+#设置备用节点，如果主节点g了，这个工作节点用于手动切换为主节点
+sudo INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--docker --server https://10.148.137.143:6443" K3S_URL=https://10.148.137.143:6443 K3S_TOKEN=K10e5f8fe14334907e847724ab466d58b5906c75cc32908a779ebe10ee1c9588bfb::server:514d1e87f7a86c1f692f1ad26ae1dff7  ./install.sh
+
+#or 
+sudo INSTALL_K3S_SKIP_DOWNLOAD=true INSTALL_K3S_EXEC="--docker" K3S_URL=https://10.148.137.143:6443 K3S_TOKEN=K10e5f8fe14334907e847724ab466d58b5906c75cc32908a779ebe10ee1c9588bfb::server:514d1e87f7a86c1f692f1ad26ae1dff7  ./install.sh
+
+
+
+
+#windows本地下载kubectl并与k3s服务端建立连接
+	下载kubectl https://dl.k8s.io/release/v1.31.0/bin/windows/amd64/kubectl.exe
+配置环境变量：
+	kubectl的安装目录配置到path中
+
+在服务器端修改文件/etc/rancher/k3s/k3s.yaml内容
+	server: https://10.148.137.143:6443
+	将该文件复制到本地改名为config，复制到本地文件地址C:\Users\<你的用户名>\.kube\config
+本地验证：
+	kubectl cluster-info 或者 kubectl get nodes 
+
+
+######################目前不重要###############################################
+etcd disabled 
+etcd可能没有安装
+下载 https://release-assets.githubusercontent.com/github-production-release-asset/11225014/f198beb0-cda9-4776-bc21-3ee9ce967646?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-01-04T08%3A15%3A47Z&rscd=attachment%3B+filename%3Detcd-v3.5.12-linux-amd64.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-01-04T07%3A15%3A17Z&ske=2026-01-04T08%3A15%3A47Z&sks=b&skv=2018-11-09&sig=OtxTIhF7ghLo%2Fptp0%2Fz7TiNmlXNv%2BvQsncG5YxaAn9E%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc2NzUxMzYwOCwibmJmIjoxNzY3NTExODA4LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.MUMLg0UXc6sGLiQh8RvCmVAQA_KYdnnqa7z5qMNyTxE&response-content-disposition=attachment%3B%20filename%3Detcd-v3.5.12-linux-amd64.tar.gz&response-content-type=application%2Foctet-stream
+#解压
+tar -xvf etcd-v3.5.12-linux-amd64.tar.gz
+
+#移动
+cd etcd-v3.5.12-linux-amd64/
+mv etcd etcdctl /usr/local/bin/
+
+#验证
+etcd --version
+
+#启动
+./etcd
