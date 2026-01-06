@@ -1,0 +1,15 @@
+压测 jmeter
+限流 nginx 
+	max request per second  
+	max connection per IP
+内存占用率排查与优化
+	mysql查询数据量太大 MySQL连接数量太多
+	优化：
+		1.生产环境减少日志打印
+			可能原因：绑定多个org.slf4j的日志实现导致无法准确限制日志级别的问题，比如同时绑定logback和log4j12，设置logback日志级别时，日志打印随机选择log4j12打印日志，logback的日志级别设置因此未对系统生效。
+
+
+
+
+设置堆转储
+java -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=<file-or-dir-path>
