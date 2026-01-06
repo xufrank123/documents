@@ -1,0 +1,26 @@
+内存查看
+free -h
+
+查看系如资源
+top或者htop
+Shift + M（大写 M），进程列表将立即按 内存占用率 (%MEM) 从高到低排序。
+
+每3秒更新一次，显示内存、CPU、IO等详细信息。
+vmstat 3
+
+显示最详细的内存统计信息
+cat /proc/meminfo
+
+查看前 10 个内存大户
+ps aux --sort=-%mem | head -n 11
+
+
+
+防火墙
+sudo ufw status
+sudo ufw enable
+sudo ufw disable
+sudo ufw default deny incoming #Sets the default to deny all incoming traffic (often already set).
+sudo ufw allow [port]/tcp
+sudo ufw allow http
+sudo ufw allow from [IP] to any port [port] #Allows port 3306 only from a specific IP. 
