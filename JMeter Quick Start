@@ -1,0 +1,18 @@
+解压zip
+运行bin目录下的jmeter.bat
+
+点击file-open-选择xml配置文件(测试计划)
+
+note:
+	测试计划 Test Plan
+		线程组 Tread Group
+			HTTP Request Default(请求通用设置，比如dns ip 端口可以在这统一设置)
+			HTTP Header Manager(请求头通用设置，比如token可以统一设置在这里）
+			HTTP  Request(设置接口url以及参数)
+			View Results Tree（查看响应结果）
+			Backend Listener(后端监听)
+			Grap Results（接口返回图表展示）
+			...
+			
+
+
