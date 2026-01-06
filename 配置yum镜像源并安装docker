@@ -1,0 +1,42 @@
+配置yum源
+
+查看系统版本
+cat /etc/euleros*
+
+Euler官方镜像源地址
+https://euleros.huawei.com/repos/
+
+在/etc/yum.repos.d/目录下，创建文件EulerOS.repo（我们当前EulerOS版本为EulerOS_Server_V200R013C00SPC300B560_x86_64，所需配置如下）
+[base]
+name=EulerOS-2.0SP13 base
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/os/$basearch/
+enabled=1
+gpgcheck=0
+
+[updates]
+name=EulerOS-2.0SP13 updates
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/updates/
+enabled=1
+gpgcheck=0
+
+[devel_tools]
+name=EulerOS-2.0SP13 devel_tools
+baseurl=http://his-mirrors.huawei.com/install/euleros/2.13/devel_tools/$basearch/
+enabled=1
+gpgcheck=0
+
+更新yum安装包列表
+yum update -y
+ 
+yum install docker-engine.x86_64 -y
+
+配置镜像源 
+vi /etc/docker/daemon.json
+    {
+        "registry-mirrors": ["https://xxx.com"]
+    }
+
+安装redis
+docker pull redis:latest
+
+refer to https://3ms.huawei.com/km/groups/3942474/blogs/details/21807194
