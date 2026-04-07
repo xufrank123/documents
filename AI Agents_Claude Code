@@ -1,3 +1,12 @@
+AI Agent = LLM + Mmemory + Planning + Tools + Action
+AI Agent Architecture： Langchain, AutoGPT, MetaGPT, Senmantic Kernal
+Memory: Long term, short term
+Tool: the extension ability of AI Agent, such as API calling, remark of coding, search enginee, translate, terminal command, transfering file form, read and write file, ide etc.
+Action: the execution unit of AI Agent based on planning.
+Planning: think of strategies for user`s requirments，split the overall planning into multiple steps which include what to do, how to do, and when to do, which is specific instead of becomning anbiguous.    
+
+
+
 基于Claude Code
 Vibe coding
  	无干预
