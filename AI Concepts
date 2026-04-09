@@ -10,9 +10,14 @@ How to make a good Prompt Engineering
 	Use Open-ended vs. Close-ended Prompts:
 		open-ended prompts give more room for detailed, thoughtful responses, they start with "what how why".
 		close-ended prompt give shorter, more specific answers and are good when you need clear facts.
+	Use Constraints for Style/Tone:
+		If you're looking for a certain tone or style, mention it in your prompt.
 	Request for Sources or References (if applicable)
 		If you need answers backed by data, ask for sources or explain where the model’s information should come from.
 	Use Examples or Templates:
+		If you want a response to follow a specific structure, providing an example can be helpful.
+	Leverage “Roleplaying” for Creativity:
+		Sometimes, asking the model to take on a specific role can make its answers more creative or targeted.
 
 
 Concept	Description	Example
