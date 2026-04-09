@@ -21,11 +21,17 @@ How to make a good Prompt Engineering
 
 
 RAG(Retrieval-Augmented Generation)
-	In essence, RAG combines the power of information retrieval and text generation, which enables the AI system to generate responses based on both pre-trained knowledge and up-to-date information pulled from external sources.
-	Retrieval Component
-	Generate Componet
-	
-
+	understanding: 
+		In essence, RAG combines the power of information retrieval and text generation, which enables the AI system to generate responses based on both pre-trained knowledge and up-to-date information pulled from external sources.
+		Retrieval Component
+		Generate Componet
+	Data Preparation & Knowledge Base
+		Curate a Knowledge Base: You’ll need a well-organized, structured knowledge base that the retrieval component can query. This could be in the form of documents, web pages, or even structured databases.
+			Consider using technologies like Elasticsearch, FAISS (Facebook AI Similarity Search), or BM25 for efficient document retrieval.
+			Make sure the knowledge base is up-to-date and includes domain-specific knowledge relevant to your AI agent’s use case.
+		Document Embedding: The documents or knowledge you want to retrieve from should be converted into embeddings (vector representations) using models like Sentence-BERT, OpenAI embeddings, or T5. 
+		This helps make the retrieval process more efficient and accurate.
+		
 
 
 
