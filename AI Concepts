@@ -21,19 +21,24 @@ How to make a good Prompt Engineering
 
 
 RAG(Retrieval-Augmented Generation)
-	understanding: 
+	Understanding waht is RAG.
 		In essence, RAG combines the power of information retrieval and text generation, which enables the AI system to generate responses based on both pre-trained knowledge and up-to-date information pulled from external sources.
 		Retrieval Component
 		Generate Componet
-	Data Preparation & Knowledge Base
+	Data Preparation & Knowledge Base:
 		Curate a Knowledge Base: You’ll need a well-organized, structured knowledge base that the retrieval component can query. This could be in the form of documents, web pages, or even structured databases.
 			Consider using technologies like Elasticsearch, FAISS (Facebook AI Similarity Search), or BM25 for efficient document retrieval.
 			Make sure the knowledge base is up-to-date and includes domain-specific knowledge relevant to your AI agent’s use case.
 		Document Embedding: The documents or knowledge you want to retrieve from should be converted into embeddings (vector representations) using models like Sentence-BERT, OpenAI embeddings, or T5. 
 		This helps make the retrieval process more efficient and accurate.
-		
-
-
+	Retrieval Model (Information Retrieval Layer):
+		Use an Efficient Search Algorithm:You’ll want to use algorithms that can quickly search through large amounts of data and return the most relevant documents.
+			Vector-based Search: Use pre-trained embedding models to transform your documents into vectors. Then, use a search engine like FAISS to retrieve the closest vectors to the query vector.
+			BM25: A traditional but effective retrieval algorithm based on term frequency and inverse document frequency (TF-IDF), which can be used for document ranking.
+	Design the Generation Model (Transformer-based):
+		you’ll need a text generation model that can effectively use this information to generate the desired output.
+			T5 (Text-to-Text Transfer Transformer) or GPT-3: Fine-tuning these models on your specific domain will allow the agent to generate high-quality responses.
+			BART or T5 for Summarization: If your system retrieves lengthy documents, models like BART (Bidirectional and Auto-Regressive Transformers) or T5 can be used to generate summaries or condensed responses.
 
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
