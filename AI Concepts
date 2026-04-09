@@ -20,6 +20,15 @@ How to make a good Prompt Engineering
 		Sometimes, asking the model to take on a specific role can make its answers more creative or targeted.
 
 
+RAG(Retrieval-Augmented Generation)
+	In essence, RAG combines the power of information retrieval and text generation, which enables the AI system to generate responses based on both pre-trained knowledge and up-to-date information pulled from external sources.
+	Retrieval Component
+	Generate Componet
+	
+
+
+
+
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
 	"核心概念：host, client, server(Tools工具，Resource, Prompts提示词)
