@@ -7,6 +7,13 @@ How to make a good Prompt Engineering
 		don’t hesitate to build on the initial prompt.
 	Be Mindful of Length:
 		Short prompts can be too broad, while excessively long prompts can sometimes confuse the model. Aim for a balance.
+	Use Open-ended vs. Close-ended Prompts:
+		open-ended prompts give more room for detailed, thoughtful responses, they start with "what how why".
+		close-ended prompt give shorter, more specific answers and are good when you need clear facts.
+	Request for Sources or References (if applicable)
+		If you need answers backed by data, ask for sources or explain where the model’s information should come from.
+	Use Examples or Templates:
+
 
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
