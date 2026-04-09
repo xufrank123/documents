@@ -1,3 +1,13 @@
+How to make a good Prompt Engineering
+	be specific
+	use clear Instructions
+	provide context
+		If you're asking for something technical or complex, giving some background information can help the model provide a more tailored answer.
+	ask follow up questions
+		don’t hesitate to build on the initial prompt.
+	Be Mindful of Length:
+		Short prompts can be too broad, while excessively long prompts can sometimes confuse the model. Aim for a balance.
+
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
 	"核心概念：host, client, server(Tools工具，Resource, Prompts提示词)
