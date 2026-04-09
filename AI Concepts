@@ -20,6 +20,10 @@ How to make a good Prompt Engineering
 		Sometimes, asking the model to take on a specific role can make its answers more creative or targeted.
 
 
+
+
+
+
 RAG(Retrieval-Augmented Generation)
 	Understanding waht is RAG.
 		In essence, RAG combines the power of information retrieval and text generation, which enables the AI system to generate responses based on both pre-trained knowledge and up-to-date information pulled from external sources.
@@ -39,6 +43,14 @@ RAG(Retrieval-Augmented Generation)
 		you’ll need a text generation model that can effectively use this information to generate the desired output.
 			T5 (Text-to-Text Transfer Transformer) or GPT-3: Fine-tuning these models on your specific domain will allow the agent to generate high-quality responses.
 			BART or T5 for Summarization: If your system retrieves lengthy documents, models like BART (Bidirectional and Auto-Regressive Transformers) or T5 can be used to generate summaries or condensed responses.
+	Fine-tuning & Integration:
+		End-to-End Model Training: To integrate the retrieval and generation components, you’ll need to fine-tune them together so the generation model knows how to utilize the information retrieved by the search model.
+			Retrieval-Augmented Training: Train the retrieval model and the generator together. You can use a hybrid setup where, during training, the generator is given access to both the query and relevant documents to learn how to combine them effectively.
+		Reinforcement Learning (RLHF - Reinforcement Learning from Human Feedback): You might also want to incorporate human feedback loops to fine-tune the RAG system further, especially when the system is tasked with handling complex or nuanced queries.				
+
+
+
+
 
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
