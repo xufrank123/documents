@@ -71,10 +71,18 @@ Types of AI Agents
 	
 
 
-
-
-
-
+How Agents Work
+	Perception： The agent collects data from its environment, which can be in the form of sensors, input signals, or through interaction with external systems (e.g., web scraping, reading a database).
+	Reasoning/Decision-Making: After perceiving the environment, the agent processes the data and makes decisions based on predefined rules, algorithms, or learned patterns. 
+		This could involve things like:
+			Logic-based reasoning (if-else rules)
+			Machine learning models for pattern recognition
+			Planning algorithms for future actions
+	Action： Once the decision is made, the agent acts by performing some action, which could be interacting with the environment, triggering external processes, or updating its internal state. For example, an agent in a coding environment might optimize a piece of code based on the feedback it gets.
+	Learning： Some agents improve their performance over time using techniques like:
+				Reinforcement learning
+				Supervised learning
+				Unsupervised learning
 
 
 
