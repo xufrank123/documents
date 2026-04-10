@@ -52,10 +52,19 @@ RAG(Retrieval-Augmented Generation)
 
 
 
+AI Agent
+What is AI Agent?  In simple terms, AI Agent is something that accomplish tasks using AI. 
+	It refers to a system or component that performs actions autonomously in an environment based on certain inputs or stimuli. 
+	It could be a part of a complex AI System and 
+	It is used to interacted with their enviroment, leran from it, and make decisions to achieve a specific goal.
 
-AI Agent: In simple terms, AI Agent is something that accomplish tasks using AI. it could be a part of a complex AI System and 
-it is used to interacted with their enviroment, leran from it, and make decisions to achieve a specific goal.
-		
+Types of AI Agents
+	Reactive Agents
+	Deliberative Agents
+	Learning Agents
+	Autonomous Agents
+	
+	
 
 
 
