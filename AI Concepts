@@ -63,8 +63,10 @@ Types of AI Agents
 		For example, they response to users based on input without long-term-memory.
 	Deliberative Agents: they have a model of the world, make decisions by reasoning about their environment. they may consider the past states and plan for the future.
 		For example, Self-driving cars make dicisions based on traffic data and inputs of sensors 
-	Learning Agents
-	Autonomous Agents
+	Learning Agents: they improve performances over time by learning from expierences and use technique like reinforcement to adjust their behavior based on feedback.
+		For example, A robot that learns the best way to navigate an unknown environment by trial and error.
+	Autonomous Agents: These Agents operate independently, using internal decision-making processes to perform tasks wihtout contastant human oversight. They may combine
+	various AI techniques(Machine learning, planning, perception) to navigate dynamic environments. 	
 	
 	
 
