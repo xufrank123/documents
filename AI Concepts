@@ -88,6 +88,16 @@ How Agents Work
 
 
 
+How to Use Agents Effectively
+	Clear Goal Definition： Agents need clear, well-defined goals.
+	Choosing the Right Algorithm：
+		If the task is deterministic and rule-based, a reactive agent might work best.
+		If you need to plan actions over time, a deliberative agent may be better.
+		For tasks involving exploration, optimization, or improving over time, a learning agent would be more suitable.
+	Provide Sufficient Feedback:
+		If the agent uses machine learning or reinforcement learning, providing accurate and consistent feedback will help the agent improve over time. This feedback loop is crucial for refining the agent’s performance.
+	Environment Modeling: 
+		If you're working with agents that learn or plan based on their environment (e.g., a game environment or business process), accurately modeling the environment is key. This includes understanding how the agent will interact with various states and conditions.
 
 
 
