@@ -105,6 +105,18 @@ How to Use Agents Effectively
 
 
 
+Example: AI Agent in Code Optimization
+	Perception: The agent analyzes your codebase by reading the source code, looking at performance bottlenecks, and perhaps running tests to collect performance metrics.
+	Reasoning: The agent uses a predefined algorithm (e.g., static analysis, pattern recognition, or AI-based analysis) to find inefficiencies or areas that can be optimized.
+	Action: Based on its analysis, the agent might suggest code refactoring, change certain code structures, or even automate certain parts of the codebase.
+	Learning: Over time, the agent gets better by learning from previous code optimization attempts, improving its suggestions based on new patterns or more efficient techniques it discovers.
+
+Tips for Effectiveness:
+	Use Specialized Frameworks: Depending on the task, you might want to use pre-built frameworks like OpenAI’s Gym for reinforcement learning agents, or use libraries like scikit-learn for machine learning-based agents.
+	Error Handling: Make sure the agent has proper error handling mechanisms in place, especially when dealing with dynamic or unpredictable environments.
+	Keep it Simple: Sometimes, starting with a basic agent (e.g., rule-based) and then iterating toward more complex, learning agents is a good approach, especially for development speed.
+
+
 
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
