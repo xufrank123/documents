@@ -59,8 +59,10 @@ What is AI Agent?  In simple terms, AI Agent is something that accomplish tasks 
 	It is used to interacted with their enviroment, leran from it, and make decisions to achieve a specific goal.
 
 Types of AI Agents
-	Reactive Agents
-	Deliberative Agents
+	Reactive Agents: they response to users immediately and they don`t "remmember" previous states. 
+		For example, they response to users based on input without long-term-memory.
+	Deliberative Agents: they have a model of the world, make decisions by reasoning about their environment. they may consider the past states and plan for the future.
+		For example, Self-driving cars make dicisions based on traffic data and inputs of sensors 
 	Learning Agents
 	Autonomous Agents
 	
