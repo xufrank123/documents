@@ -52,6 +52,29 @@ RAG(Retrieval-Augmented Generation)
 
 
 
+
+AI Agent: In simple terms, AI Agent is something that accomplish tasks using AI. it could be a part of a complex AI System and 
+it is used to interacted with their enviroment, leran from it, and make decisions to achieve a specific goal.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Concept	Description	Example
 MCP	Model Context Protocol 模型上下文协议	
 	"核心概念：host, client, server(Tools工具，Resource, Prompts提示词)
