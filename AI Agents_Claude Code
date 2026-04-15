@@ -1,4 +1,5 @@
 AI Agent = LLM + Mmemory + Planning + Tools + Action
+	an agent is simply tools in a loop.
 AI Agent Architecture： Langchain, AutoGPT, MetaGPT, Senmantic Kernal
 Memory: Long term, short term
 Tool: the extension ability of AI Agent, such as API calling, remark of coding, search enginee, translate, terminal command, transfering file form, read and write file, ide etc.
